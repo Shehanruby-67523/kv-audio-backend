@@ -28,6 +28,12 @@ const reviewSchema = new mongoose.Schema({
     default: Date.now()
   },
 
+  profilePicture: { // This is the profile picture of the user
+    type: String,
+    required: true,
+    default: "https://i.pinimg.com/736x/0d/64/98/0d64989794b1a4c9d89bff571d3d5842.jpg"
+  },
+
   isApproved: { // This is the status of the review
     type: Boolean,
     required: true,

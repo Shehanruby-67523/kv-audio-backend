@@ -7,4 +7,10 @@ export function addReview(req,res){
     });
     return;
   }
+
+  const data = req.body;
+
+  data.name = req.user.firstName + " " + req.user.lastName;
+
+  const newReview = new Review(data);
 }
