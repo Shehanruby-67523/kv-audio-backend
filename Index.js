@@ -50,3 +50,6 @@ app.use("/api/reviews",reviewRouter);
 app.listen(3000,()=>{
   console.log("Server is running on port 3000")
 });
+
+//"email": jane.doe@example.com, "password": securePassword123! :- customer
+//"email": shehan10@gmail.com, "password": securePassword123! :- admin
