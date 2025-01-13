@@ -30,8 +30,13 @@ export async function getReviews(req,res){
   const user = req.user;
 
   try {
-    const reviews = await Review.find();
-    res.json(reviews);
+    if (user.role == "admin"){
+      const reviews = await Review.find();
+      res.json(reviews);
+    } else {
+      const reviews = await Review.find({isApproved:true});
+      res.json(reviews);
+    }
   } catch (error) {
     res.status(500).json({error: "Reviews could not be retrieved"});
   }
