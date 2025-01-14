@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 
+// Schema for the product
 const productSchema = new mongoose.Schema({
   key : {
     type : String,
@@ -14,6 +15,11 @@ const productSchema = new mongoose.Schema({
     type : Number,
     required : true
   },
+  category : {
+    type : String,
+    required : true,
+    default : "Uncategorized"
+  },
   dimensions : {
     type : String,
     required : true
@@ -21,9 +27,15 @@ const productSchema = new mongoose.Schema({
   description: {
     type : String,
     required : true
+  },
+  availability : {
+    type : Boolean,
+    required : true,
+    default : true
   }
 })
 
+// Model for the product
 const Product = mongoose.model("Product",productSchema)
 
 export default Product;
