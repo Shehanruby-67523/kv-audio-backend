@@ -3,6 +3,7 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 
+//This is the registerUser function
 export function registerUser(req,res){
 
   const data = req.body;
@@ -24,6 +25,7 @@ export function registerUser(req,res){
   })
 }
 
+//This is the loginUser function
 export function loginUser(req,res) {
   
   const data = req.body
