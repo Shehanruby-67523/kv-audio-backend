@@ -30,10 +30,26 @@ export async function addProduct (req,res){
 }
 
 export async function getProducts (req,res){
+
+  let isAdmin = false;
+  if (req.user != null){
+    if(req.user.role == "admin"){
+      isAdmin = true;
+    }
+  }
+  
   try{
+    if(isAdmin){
 
     const products = await Product.find();
     res.json(products);
+    return;
+    } else {
+      const products = await Product.find({availability: true});
+      res.json(products);
+      return;
+    }
+
   }catch(e){
     res.status(500).json({
       message: "Failed to get products"
