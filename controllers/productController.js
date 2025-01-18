@@ -1,4 +1,5 @@
 import Product from "../models/product.js";
+import { updateProducts } from "./usercontroller.js"; 
 
 export async function addProduct (req,res){
 
@@ -56,3 +57,4 @@ export async function getProducts (req,res){
     })
   }
 }
+

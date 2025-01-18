@@ -2,6 +2,7 @@ import User from "../models/user.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
+import Product from "../models/product.js";
 
 //This is the registerUser function
 export function registerUser(req,res){
@@ -56,4 +57,29 @@ export function loginUser(req,res) {
       }
     }
     });
+}
+
+export  async function updateProducts(req,res){
+  try {
+    if(isItAdmin(req)){
+      const key = req.param.key;
+      const data = req.body;
+
+      await Product.updateOne({key:key},data);
+
+      res.json({
+        message: "Product updated successfully"
+      });
+      return;
+    }else{
+      res.status(403).json({
+        message: "You are not authorized to perform this action"
+      });
+      return;
+    }
+  }catch(e){
+    res.status(500).json({
+      message: "Failed to update product"
+    });
+  }
 }
