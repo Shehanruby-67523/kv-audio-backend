@@ -60,6 +60,7 @@ export function loginUser(req,res) {
     });
 }
 
+//This is a function that checks if the user is an admin
 export function isItAdmin(req){
   let isAdmin = false;
 
@@ -70,4 +71,17 @@ export function isItAdmin(req){
   }
 
   return isAdmin;
+}
+
+//This is a function that checks if the user is a customer
+export function isItCustomer(req){
+  let isCustomer = false;
+
+  if (req.user != null){
+    if(req.user.role == "customer"){
+      isCustomer = true;
+    }
+  }
+
+  return isCustomer;
 }
