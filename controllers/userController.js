@@ -4,6 +4,7 @@ import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 import Product from "../models/product.js";
 
+dotenv.config();
 //This is the registerUser function
 export function registerUser(req,res){
 
@@ -59,27 +60,14 @@ export function loginUser(req,res) {
     });
 }
 
-export  async function updateProducts(req,res){
-  try {
-    if(isItAdmin(req)){
-      const key = req.param.key;
-      const data = req.body;
+export function isItAdmin(req){
+  let isAdmin = false;
 
-      await Product.updateOne({key:key},data);
-
-      res.json({
-        message: "Product updated successfully"
-      });
-      return;
-    }else{
-      res.status(403).json({
-        message: "You are not authorized to perform this action"
-      });
-      return;
+  if (req.user != null){
+    if(req.user.role == "admin"){
+      isAdmin = true;
     }
-  }catch(e){
-    res.status(500).json({
-      message: "Failed to update product"
-    });
   }
+
+  return isAdmin;
 }
