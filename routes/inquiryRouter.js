@@ -3,6 +3,6 @@ import { addInquiry } from "../controllers/inquiryController.js";
 
 const inquiryRouter = express.Router();
 
-inquiryRouter.post("/", addInquiry)
+inquiryRouter.post("/", addInquiry);
 
 export default inquiryRouter;
