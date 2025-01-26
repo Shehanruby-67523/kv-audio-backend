@@ -1,4 +1,4 @@
-import { isItCustomer } from "./userController"
+import { isItCustomer } from "./userController.js"
 
 export async function addInquiry(req, res) {
     try{
